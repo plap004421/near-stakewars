@@ -2,9 +2,12 @@
 ## Запуск валидатора "Chunk-only Producer" в сети shardnet.
 ![img](./images/intro2.png)
 
-Stake Wars — это программа, которая помогает сообществу ознакомиться с тем, что значит быть валидатором NEAR, и дает им ранний шанс получить доступ к Сhunk-only producer. Вознаграждения, предлагаемые программой Stake Wars, поддерживают новых участников, которые хотят присоединиться к основной сети в качестве валидатора, начиная с сентября 2022 года.
+Stake Wars — программа, которая помогает сообществу ознакомиться с тем, что значит быть валидатором NEAR, и дает им ранний шанс получить доступ к Сhunk-only producer. Вознаграждения, предлагаемые программой Stake Wars, поддерживают новых участников, которые хотят присоединиться к основной сети в качестве валидатора, начиная с сентября 2022 года.
+
+Кто такие [Chunk-only Producer?](https://near.org/decentralize/)
+
 ## Содержание
-* [О программе и Регистрация](#о-программе-и-регистрация)
+* [Регистрация](#регистрация)
 * [Создание кошелька](#создание-кошелька)
 * [Запуск узла](#запуск-узла)
 * [Активация узла в качестве валидатора](#активация-узла-в-качестве-валидатора)
@@ -14,46 +17,28 @@ Stake Wars — это программа, которая помогает соо
 * [Руководство по транзакциям](#руководство-по-транзакциям)
 * [RPC](#rpc)
 * [Общие команды](#общие-команды)
-### О программе и Регистрация
-* О программе [Stake Wars.](https://near.org/stakewars/)
-* Что такое [Chunk-only Producer?](https://near.org/decentralize/)
+### Регистрация
 * Заполните [форму](https://nearprotocol1001.typeform.com/to/Z39N7cU9?typeform-source=x50.medium.com) для регистрация Chunk-Only Producer.
 
 ### Требования к серверу:
-> **CPU:** 4-Core CPU with AVX support
-
-> **RAM:** 8GB DDR4
-
-> **Storage:** 500GB SSD
+> **CPU:** 4-Core CPU with AVX support /
+> **RAM:** 8GB DDR4 /
+> **Storage:** 500GB SSD /
+> 
 ## Создание кошелька
-Перейдя на [сайт](https://wallet.shardnet.near.org/) нажмите "Создать учетную запись":
-
-
-![img](./images/img1.png)
-
+Сперва надо создать кошелек на [сайте](https://wallet.shardnet.near.org/). Нажмите "Создать учетную запись":
 
 Введите свободное имя пользователя и нажмите "Reserve My Account ID":
 
 
-![img](./images/img2_2.png)
+![img](./images/1.png)
 
 
-Выбирите подходящий для вас метод восстановления (мне ближе мнемоническая фраза):
+B выберите подходящий для вас метод восстановления.
+
+В результате вы получите тестовые NEAR в сети shardnet.
 
 
-![img](./images/img3.png)
-
-
-Сохраните мнемоническую фразу, и введите ее далее:
-
-
-![img](./images/img4.png)
-
-
-В результате у ваc будут NEAR:
-
-
-![img](./images/img5_2.png)
 
 ## Запуск узла
 ### Обновите пакеты:
@@ -66,21 +51,12 @@ curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt install build-essential nodejs
 PATH="$PATH"
 ```
-Проверьте версии Node.js и npm
-```
-node -v
-```
-> v18.x.x
 
-```
-npm -v
-```
-> 8.x.x
 ### Установите NEAR-CLI
 ```
 sudo npm install -g near-cli
 ``` 
-### Настройте окружающую среду
+### Настройте переменные среды
 ```
 export NEAR_ENV=shardnet
 echo 'export NEAR_ENV=shardnet' >> ~/.bashrc
@@ -110,19 +86,17 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 source $HOME/.cargo/env
 ```
-### Клонируйте [nearcore репозиторий](https://github.com/near/nearcore).
+### Клонируйте репозиторий [nearcore](https://github.com/near/nearcore).
 ```
 git clone https://github.com/near/nearcore
 cd nearcore
 git fetch
 ```
-Далее проверьте **`<commit>`** в данном [файле](https://github.com/near/stakewars-iii/blob/main/commit.md)
+Проверьте **`<commit>`** в данном [файле](https://github.com/near/stakewars-iii/blob/main/commit.md)
 ```
 git checkout <commit>
 ```
 Замените его на значение из файла. В моем варианте команда выглядит так:
-```
-git checkout 0f81dca95a55f975b6e54fe6f311a71792e21698
 ```
 ### Скомпилируйте бинарный файл
 ```
@@ -155,10 +129,10 @@ wget https://s3-us-west-1.amazonaws.com/build.nearprotocol.com/nearcore-deploy/s
 near login
 ```
 ### Cкопируйте ссылку и вставьте её в браузер
-![img](./images/img6.png)
+![img](./images/2.png)
 ### Предоставьте полный доступ Near CLI, нажимайте "Next", далее "Подключить".
-### Введите название вашего кошелька и нажмите "Подтвердить". После этого вы увидите такую страницу, это нормально:
-![img](./images/img7.png)
+### Введите название вашего кошелька и нажмите "Подтвердить". Увидите такую страницу (так и должно быть):
+![img](./images/3.png)
 ### Введите в терминале вашу учетную запись, нажмите `enter`
 ### Проверьте validator_key.json
 ```
@@ -170,17 +144,11 @@ near generate-key <pool_id>
 ```
 `<pool_id>` это `XX.factory.shardnet.near` , где `XX` имя вашего пула.
 
-Пример (не повторяйте):
-```
-near generate-key code.factory.shardnet.near
-```
 ### Скопируйте сгенерированный файл в папку *shardnet*
 ```
 cp ~/.near-credentials/shardnet/YOUR_WALLET.json ~/.near/validator_key.json
 ```
-YOUR_WALLET замените на ваше имя, пример (не повторяйте):
-```
-cp ~/.near-credentials/shardnet/code.shardnet.near.json ~/.near/validator_key.json
+YOUR_WALLET замените на ваше имя.
 ```
 ### Отредактируйте *validator_key.json*
 ```
@@ -189,7 +157,7 @@ nano ~/.near/validator_key.json
 * Отредактируйте «account_id» => *XX.factory.shardnet.near*, где *XX* — имя вашего пула.
 * Измените *private_key* на *secret_key*
 
-Содержимое файла должно соответствовать следующему шаблону:
+Содержимое файла должно соответствовать шаблону:
 ```
 {
   "account_id": "XX.factory.shardnet.near",
@@ -221,7 +189,7 @@ KillMode=mixed
 [Install]
 WantedBy=multi-user.target
 ```
-Отредактирует строки *USER*, *WorkingDirectory*, *ExecStart* под ваши значения
+Отредактировать строки *USER*, *WorkingDirectory*, *ExecStart* под ваши значения
 ### Запустите узел валидатора
 ```
 sudo systemctl daemon-reload
@@ -233,17 +201,18 @@ sudo systemctl start neard
 sudo apt install ccze
 journalctl -n 100 -f -u neard | ccze -A
 ```
-### Дожидаемся полной синхронизации
+Дождаться полной синхронизации.
+
 ## Запуск стейкинг пула
 ### Разверните контракт стейкинг пула, шаблон команды
 ```
-near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "<pool id>", "owner_id": "<accountId>", "stake_public_key": "<public key>", "reward_fee_fraction": {"numerator": 5, "denominator": 100}, "code_hash":"DD428g9eqLL8fWUxv8QSpVFzyHi1Qd16P8ephYCTmMSZ"}' --accountId="<accountId>" --amount=450 --gas=300000000000000
+near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "<pool id>", "owner_id": "<accountId>", "stake_public_key": "<public key>", "reward_fee_fraction": {"numerator": 5, "denominator": 100}, "code_hash":"DD428g9eqLL8fWUxv8QSpVFzyHi1Qd16P8ephYCTmMSZ"}' --accountId="<accountId>" --amount=30 --gas=300000000000000
 ```
 Замените заначения в ковычках <> на свои данные
 
-> *Pool ID*: Имя стейкинг пула. Пример: code
+> *Pool ID*: Имя стейкинг пула. (например freename)
 
-> *Owner ID*: Shardnet аккаунт. Пример: code.shardnet.near
+> *Owner ID*: Shardnet owner-аккаунт. (например freename.shardnet.near)
 
 > *Public Key*: public key из файла validator_key.json
 
@@ -254,6 +223,7 @@ near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "<pool 
 Должно появиться сообщение об успешном создании пула
 
 Проверить пул можно [здесь](https://explorer.shardnet.near.org/nodes/validators).
+Следить за аптаймом [здесь](https://openshards.io/shardnet-uptime-scoreboard/).
 
 ## Создайте cron задачу для автоматического пинга
 ```
@@ -281,13 +251,13 @@ near validators next | grep $POOLID >> $LOGS/all.log
 ```
 Отредактируйте LOGS, POOLID, ACCOUNTID в зависимости от ваших данных.
 
-Создайте новый crontab, запускаемый каждые 5 минут:
+Создайте новый crontab, запускаемый каждые 2 часа:
 ```
 crontab -e
 ```
 Прописываем строку с измененным путем к файлу скрипта:
 ```
-*/5 * * * * sh /home/<USER_ID>/scripts/ping.sh
+* */2 * * * sh /home/<USER_ID>/scripts/ping.sh
 ```
 Сохраняем и закрываем файл
 
