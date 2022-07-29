@@ -150,8 +150,8 @@ near generate-key <pool_id>
 ### Скопируйте сгенерированный файл в папку *shardnet*
 ```
 cp ~/.near-credentials/shardnet/YOUR_WALLET.json ~/.near/validator_key.json
-```
-YOUR_WALLET замените на ваше имя.
+
+*YOUR_WALLET* замените на ваше имя.
 ```
 ### Отредактируйте *validator_key.json*
 ```
