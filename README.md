@@ -45,7 +45,7 @@ B выберите подходящий для вас метод восстан�
 ```
 sudo apt update && sudo apt upgrade -y
 ```
-### Устанавите Node.js и npm
+### Установите Node.js и npm
 ``` 
 curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -  
 sudo apt install build-essential nodejs
